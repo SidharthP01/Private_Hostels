@@ -65,6 +65,14 @@
             aside {
                 display: none;
             }
+
+            .logout {
+                display: block !important;
+            }
+
+            #admin {
+                display: none !important;
+            }
         }
 
         @media screen and (max-width: 400px) {
@@ -128,9 +136,9 @@
             color: #fff;
             border: none;
             text-align: center;
-            display: flex;
             align-items: center;
             padding-bottom: 0.1rem;
+            display: none;
         }
 
         .logout:hover::before {
@@ -322,7 +330,7 @@
             height: 100%;
             flex-direction: column;
             align-items: FLE;
-            justify-content: start;
+            justify-content: space-between;
             background-color: #fff;
             border-radius: 0.5rem;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -335,7 +343,6 @@
             background: #242425;
             border-bottom: 1px solid #ccc;
             cursor: pointer;
-            te: start;
             width: 100%;
         }
 
@@ -370,6 +377,7 @@
                         <a class="nav-link active"> Hostel Lists</a>
                         <a class="nav-link active"> Complaints</a>
                     </div>
+                    <div id="admin" class="nav-link active">Admin</div>
                     <button class="logout"> <span class="logout-content">Log out </span>
                     </button>
                 </div>
@@ -380,19 +388,27 @@
     <div class="hero">
         <aside>
             <div class="sidebar">
-                <button class="option">
-                    <span><img src="./assets/dash.png" alt=""></span>
-                    Dashboard
-                </button>
-                <button class="option">
-                    <span><img src="./assets/home_1946436.png" alt=""></span>
-                    Hostel Lists
-                </button>
-                <button class="option">
-                    <span><img src="./assets/ebook_7200537.png" alt=""></span>
-                    Complaints
-                </button>
+                <div>
+                    <button class="option">
+                        <span><img src="./assets/dash.png" alt=""></span>
+                        Dashboard
+                    </button>
+                    <button class="option">
+                        <span><img src="./assets/home_1946436.png" alt=""></span>
+                        Hostel Lists
+                    </button>
+                    <button class="option">
+                        <span><img src="./assets/ebook_7200537.png" alt=""></span>
+                        Complaints
+                    </button>
 
+                </div>
+
+
+                <button type="button" class="option">
+                    <span><img src="./assets/exit_1286853.png" alt=""></span>
+                    logout
+                </button>
             </div>
         </aside>
 
