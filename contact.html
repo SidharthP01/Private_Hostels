@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customized Contact Form</title>
+    <link rel="icon" href="./assets/logo.jpg" type="image/png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,800&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .custom {
+            max-width: min(70vw, 600px);
+            width: 100%;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .custom-group {
+            margin-bottom: 20px;
+        }
+
+        .custom-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+            text-align: left;
+        }
+
+        .custom-input,
+        .custom-textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+
+        .namecontainer {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .custom-name-container .custom-input {
+            width: 100%;
+        }
+
+        .custom-submit {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .custom-submit:hover {
+            background-color: #45a049;
+        }
+
+        .required {
+            color: red;
+        }
+
+        #logo {
+            height: 7vw;
+            filter: invert(100%);
+        }
+
+        @media screen and (max-width: 400px) {
+            #logo {
+                height: 1.75rem;
+            }
+
+            .title {
+                font-size: 0.75rem;
+            }
+
+            h6 {
+                font-size: 0.50rem;
+            }
+        }
+
+        .footer {
+            margin-top: 2rem;
+            background-color: rgb(28, 28, 28);
+            display: flex;
+            padding: 5%;
+            justify-content: space-between;
+            color: white;
+
+        }
+
+        .footer hr {
+            border-top: 1px solid;
+        }
+
+        .copyright {
+            background-color: rgb(28, 28, 28);
+            color: white;
+            border-top: 1px solid white;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+
+        }
+    </style>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        emailjs.init("fssbnTGeK89p3NXHw");
+        document.getElementById('contactForm').addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const fromData = new FormData(e.target);
+            const templateParams = {
+                from_name: formData.get("customFirstName") + " " + formData.get("customLastName"),
+                email: formData.get("customEmail"),
+                semester: formData.get("customSemester"),
+                department: formData.get("customDepartment"),
+                phone_number: formData.get("customPhoneNumber"),
+                message: formData.get("customMessage"),
+            };
+
+            emailjs.send("service_ww0eb4c", "template_wae47al", templateParams)
+                .then(function (response) {
+                    console.log("Email sent successfully", response);
+                    // You can add success message or redirect here
+                }, function (error) {
+                    console.error("Email failed to send", error);
+                    // You can add error message here
+                });
+        })
+    </script>
+</head>
+
+<body>
+    <nav style="width: 100vw;" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <div style="display: flex;align-items: center;gap:1rem;">
+                <img id="logo" src="./assets/Cet_emblem.png" alt="">
+                <a class="navbar-brand" style="margin-right: 0;" href="./index.html">
+                    <h2 style="margin:  0 0;text-wrap: wrap;" class="title"> <b>PRIVATE HOSTELS </b> </h2>
+                    <h6 style="text-wrap: wrap;">COLLEGE OF ENGINEERING TRIVANDRUM</h6>
+                </a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup"
+                style="justify-content: end; padding-right: 3rem;">
+                <div class="navbar-nav" style="gap: 2rem;">
+                    <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                    <a class="nav-link" href="#">Hostels</a>
+                    <a class="nav-link" href="#">PGs</a>
+                    <a class="nav-link" href="#">About Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="custom" style="margin-top: 1rem;">
+        <h2 style="margin-bottom: 2rem;"><b>Grievance Redressal </b></h2>
+        <form id="contactForm" action="#" method="post">
+            <div class="namecontainer">
+                <div class="custom-group">
+                    <label for="customFirstName" class="custom-label">First Name<span class="required">*</span></label>
+                    <input type="text" id="customFirstName" name="customFirstName" class="custom-input" required>
+                </div>
+
+                <div class="custom-group">
+                    <label for="customLastName" class="custom-label">Last Name<span class="required">*</span></label>
+                    <input type="text" id="customLastName" name="customLastName" class="custom-input" required>
+                </div>
+            </div>
+
+            <div class="custom-group custom-email-container">
+                <label for="customEmail" class="custom-label">Your Email<span class="required">*</span></label>
+                <input type="email" id="customEmail" name="customEmail" class="custom-input" required>
+            </div>
+
+            <div class="custom-group">
+                <label for="customSemester" class="custom-label">Semester<span class="required">*</span></label>
+                <input type="text" id="customSemester" name="customSemester" class="custom-input" required>
+            </div>
+
+            <div class="custom-group">
+                <label for="customDepartment" class="custom-label">Department<span class="required">*</span></label>
+                <input type="text" id="customDepartment" name="customDepartment" class="custom-input" required>
+            </div>
+
+            <div class="custom-group">
+                <label for="customPhoneNumber" class="custom-label">Phone Number<span class="required">*</span></label>
+                <input type="tel" id="customPhoneNumber" name="customPhoneNumber" class="custom-input" required>
+            </div>
+
+            <div class="custom-group custom-message-container">
+                <label for="customMessage" class="custom-label">Your Message<span class="required">*</span></label>
+                <textarea id="customMessage" name="customMessage" rows="4" class="custom-textarea" required></textarea>
+            </div>
+
+            <button type="submit" class="custom-submit">Submit</button>
+        </form>
+    </div>
+
+    <footer style="width: 100vw;overflow-y: hidden;">
+        <div class="footer">
+
+            <div id="about" class="about">
+                <h3>About Us</h3>
+                <h6>Welcome to the official website of Private Hostel Committee, an initiative taken by Afin Shafi M
+                    (University Union Councillor, College Union 23-34).</h6>
+
+            </div>
+            <div class="contact">
+                <h3>Contact</h3>
+                <h6>Afin : 9188370967</h6>
+                <h6>Basil : 9495121351</h6>
+                <h6></h6>
+
+            </div>
+        </div>
+
+        <div class="copyright">
+            <h6>copyright@cetcollegeunion 2023</h6>
+        </div>
+
+    </footer>
+
+
+
+</body>
+
+</html>
